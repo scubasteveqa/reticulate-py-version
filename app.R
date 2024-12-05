@@ -1,15 +1,16 @@
 library(shiny)
 library(reticulate)
 
-python_version <- as.character(py_config()$version) # Compute version upfront
-
 ui <- fluidPage(
   titlePanel("Display the Python Version through reticulate"),
-  span(paste("Python version:", python_version), id = "python_version")  # Render as static text
+  verbatimTextOutput("python_version")
 )
 
 server <- function(input, output, session) {
-  # No server-side updates required
+  output$python_version <- renderPrint({
+    python_version <- as.character(py_config()$version)
+    cat("Python version:", python_version, "\n")
+  })
 }
 
 shinyApp(ui, server)
