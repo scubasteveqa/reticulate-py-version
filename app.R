@@ -2,7 +2,7 @@ library(shiny)
 library(reticulate)
 
 ui <- fluidPage(
-  titlePanel("Python Version in Shiny App"),
+  titlePanel("Display the Python Version through reticulate"),
   verbatimTextOutput("python_version")
 )
 
